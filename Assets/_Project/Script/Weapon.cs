@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 
-public class Weapone : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
 
     [SerializeField] GameObject BaseBullet;
