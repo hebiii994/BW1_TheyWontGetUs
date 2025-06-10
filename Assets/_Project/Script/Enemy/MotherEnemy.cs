@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MotherEnemy : MonoBehaviour
+public  class MotherEnemy : MonoBehaviour
 {
     //
     [SerializeField] private int _lifeEnemy;

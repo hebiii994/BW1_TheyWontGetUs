@@ -15,8 +15,15 @@ public class EnemyA : MonoBehaviour
     private Rigidbody2D _rbEnemy;
     private Vector2 _direction;
     private bool _playerInRange = false;
-    private float _speedEnemy = 0;
+    //private float _speedEnemy = 0;
 
+
+
+    private void Awake()
+    {
+        _externalCollider = GetComponent<CircleCollider2D>();
+        _internalCollider = GetComponent<BoxCollider2D>();
+    }
     void Start()
     {
         motherEnemy = GetComponent<MotherEnemy>();
@@ -34,6 +41,11 @@ public class EnemyA : MonoBehaviour
         {
             float _speedEnemy = motherEnemy.GetSpeedEnemy();
             _rbEnemy.MovePosition(_rbEnemy.position + _direction * (_speedEnemy * Time.deltaTime));
+        }
+
+        if (_rbEnemy.velocity == Vector2.zero)
+        {
+            _direction = Vector2.zero;
         }
     }
     void Update()
@@ -84,13 +96,16 @@ public class EnemyA : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             // Controlla se il player è completamente uscito dal collider esterno
-            //if (!other.IsTouching(_externalCollider))
-            //{
+            if (!other.IsTouching(_externalCollider))
+            {
                 _playerInRange = false;
-                _rbEnemy.velocity = Vector2.zero;
+                
             
                 Debug.Log("Player uscito dall'area esterna - Inseguimento disattivato");
-            //}
+            }
+            _rbEnemy.velocity = Vector2.zero;
+            Debug.Log("Velocity a 0");
+            
         }
     }
 
