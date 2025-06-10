@@ -11,7 +11,7 @@ public class EnemyA : MonoBehaviour
     [SerializeField] private Collider2D _internalCollider;
 
     private Transform _targetPlayer;
-    private MotherEnemy motherEnemy;
+    private Enemy motherEnemy;
     private Rigidbody2D _rbEnemy;
     private Vector2 _direction;
     private bool _playerInRange = false;
@@ -26,7 +26,7 @@ public class EnemyA : MonoBehaviour
     }
     void Start()
     {
-        motherEnemy = GetComponent<MotherEnemy>();
+        motherEnemy = GetComponent<Enemy>();
         _rbEnemy = GetComponent<Rigidbody2D>();
 
         if (_targetPlayer == null)
@@ -79,17 +79,17 @@ public class EnemyA : MonoBehaviour
             
         }
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            if (collision.otherCollider == _internalCollider)
-            {
-                ApplyDamageToPlayer(collision.gameObject);
-                Destroy(gameObject);
-            }
-        }
-    }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Player"))
+    //    {
+    //        if (collision.otherCollider == _internalCollider)
+    //        {
+    //            ApplyDamageToPlayer(collision.gameObject);
+    //            Destroy(gameObject);
+    //        }
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D other)
     {
