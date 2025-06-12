@@ -10,14 +10,9 @@ public class EnemyWayPoint : Enemy
     //Primo wayPoint da cui inizia
     private int _currentWaypointIndex = 0;
 
-
-    protected override void Move()
+    protected override void Start()
     {
-        if (_wayPoint.Length == 0)
-        {
-            Debug.Log("Asseganre wayPoint al nemico " + gameObject.name);
-        }
-
+        base.Start();
         //Non so come mai dentro start attiva la gravità
         for (int i = 0; i < _wayPoint.Length; i++)
         {
@@ -28,6 +23,14 @@ public class EnemyWayPoint : Enemy
                 sr.enabled = false;
             }
         }
+    }
+    protected override void Move()
+    {
+        if (_wayPoint.Length == 0)
+        {
+            Debug.Log("Asseganre wayPoint al nemico " + gameObject.name);
+        }
+
 
         Transform targetWaypoint = _wayPoint[_currentWaypointIndex];
 
