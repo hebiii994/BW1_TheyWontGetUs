@@ -18,6 +18,7 @@ public class Weapon_AutoAim : Weapon
         if (bulletController != null)
         {
             Vector2 direction = (currentTarget.position - transform.position).normalized;
+            bulletController.SetTarget(direction, targetTag);
             bulletController.SetDirection(direction);
         }
     }

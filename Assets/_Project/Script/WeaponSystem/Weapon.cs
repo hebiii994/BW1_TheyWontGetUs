@@ -15,7 +15,7 @@ public abstract class Weapon : MonoBehaviour
     protected Transform currentTarget; // il nemico da targettare
 
     //bersaglio
-    [SerializeField] private string targetTag = "Enemy";
+    [SerializeField] protected string targetTag = "Enemy";
 
 
     // Update is called once per frame
@@ -59,7 +59,12 @@ public abstract class Weapon : MonoBehaviour
         }
         currentTarget = nearestTarget;
     }
-
+    public virtual void LevelUp()
+    {
+        //da pensare i vari potenziamenti
+        fireRate *= 1.2f;
+        Debug.Log(gameObject.name + " Level Up! Nuovo rateo di fuoco: " + fireRate);
+    }
     protected abstract void Fire(); //ogni arma avrà la sua logica di sparo
 
 }

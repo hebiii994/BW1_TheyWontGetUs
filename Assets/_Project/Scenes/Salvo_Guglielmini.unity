@@ -782,9 +782,11 @@ GameObject:
   m_Component:
   - component: {fileID: 2116022085}
   - component: {fileID: 2116022084}
+  - component: {fileID: 2116022086}
   - component: {fileID: 2116022083}
   - component: {fileID: 2116022082}
   - component: {fileID: 2116022081}
+  - component: {fileID: 2116022087}
   m_Layer: 0
   m_Name: WaypointEnemy
   m_TagString: Enemy
@@ -954,6 +956,36 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2116022086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116022080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9dc8b1f6565991429959eb482463e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _currentHealth: 0
+  _maxHealth: 100
+  _isPlayer: 0
+--- !u!114 &2116022087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2116022080}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99078908cc15d0c40a8aacfa282d479a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 5511380416323264749, guid: 889642ca7790eed45837e26162b88365, type: 3}
+  fireRate: 1
+  targetTag: Player
 --- !u!1 &2139588060
 GameObject:
   m_ObjectHideFlags: 0

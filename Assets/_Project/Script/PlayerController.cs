@@ -27,7 +27,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Direction = new Vector2(h, v);
+        Direction = new Vector2(h, v).normalized;
         rb.MovePosition(rb.position + Direction *(_speed * Time.deltaTime));
     }
 }
