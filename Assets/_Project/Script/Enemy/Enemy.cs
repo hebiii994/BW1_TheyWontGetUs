@@ -12,7 +12,8 @@ public abstract class Enemy : MonoBehaviour
     [SerializeField] private GameObject itemToDrop;
     
 
-    
+
+
     protected Transform playerTarget;
     protected Rigidbody2D rb;
 
