@@ -8,6 +8,8 @@ public class LifeController : MonoBehaviour
     [SerializeField] private float _currentHealth;
     [SerializeField] private float _maxHealth = 10;
     [SerializeField] private bool _isPlayer;
+    
+    
 
     //public enum ON_DEFEAT_BEHAVIOUR {DISABLE = 0, DESTROY = 1, NONE = 2}
     //[SerializeField] private ON_DEFEAT_BEHAVIOUR _onDefeatBehaviour = ON_DEFEAT_BEHAVIOUR.DISABLE;  <-- spostiamolo nei nemici/player

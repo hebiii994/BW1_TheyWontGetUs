@@ -10,6 +10,7 @@ public class Bullet : MonoBehaviour
 
     private Vector2 _moveDirection;
     private Rigidbody2D _rb;
+    private string _targetTag;
     // Start is called before the first frame update
     void Awake()
     {
@@ -17,6 +18,12 @@ public class Bullet : MonoBehaviour
 
         //distruggiamo il proiettile dopo 5 secondi 
         Destroy(gameObject, 5f);
+    }
+
+    public void SetTarget(Vector2 direction, string targetTag)
+    {
+        
+        _targetTag = targetTag;
     }
 
     public void SetDirection(Vector2 direction)
@@ -32,16 +39,16 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.isTrigger)
+        if (other.isTrigger) return;
+        if (other.CompareTag(_targetTag))
         {
-            return; 
+            LifeController life = other.GetComponent<LifeController>();
+            if (life != null)
+            {
+                life.TakeDamage(_damage);
+                Destroy(gameObject);
+            }
         }
-
-        LifeController life = other.GetComponent<LifeController>();
-        if (life != null)
-        {
-            life.TakeDamage(_damage);
-            Destroy(gameObject);
-        }
+            
     }
 }
