@@ -14,6 +14,9 @@ public abstract class Weapon : MonoBehaviour
     private float _targetAcquisitionTimer;
     protected Transform currentTarget; // il nemico da targettare
 
+    //bersaglio
+    [SerializeField] private string targetTag = "Enemy";
+
 
     // Update is called once per frame
     protected virtual void Update()
@@ -42,19 +45,19 @@ public abstract class Weapon : MonoBehaviour
     // memorizza il più vicino.
     private void AcquireTarget()
     {
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        Transform nearestEnemy = null;
+        GameObject[] targets = GameObject.FindGameObjectsWithTag(targetTag);
+        Transform nearestTarget = null;
         float minDistance = Mathf.Infinity;
-        foreach (GameObject enemy in enemies)
+        foreach (GameObject target in targets)
         {
-            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+            float distance = Vector3.Distance(transform.position, target.transform.position);
             if (distance < minDistance)
             {
                 minDistance = distance;
-                nearestEnemy = enemy.transform;
+                nearestTarget = target.transform;
             }
         }
-        currentTarget = nearestEnemy;
+        currentTarget = nearestTarget;
     }
 
     protected abstract void Fire(); //ogni arma avrà la sua logica di sparo
