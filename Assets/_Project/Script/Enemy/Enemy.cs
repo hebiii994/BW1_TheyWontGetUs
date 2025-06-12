@@ -23,6 +23,7 @@ public abstract class Enemy : MonoBehaviour
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        _lifeController = GetComponent<LifeController>();
     }
 
     protected virtual void Start()
