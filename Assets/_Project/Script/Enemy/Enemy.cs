@@ -5,30 +5,29 @@ using UnityEngine;
 public abstract class Enemy : MonoBehaviour
 {
     
-    [SerializeField] private int _maxLife = 100;
+    
     [SerializeField] private float _speed = 3f;
     [SerializeField] private int _damage = 10;
-    [SerializeField] private float dropChance = 15f;
+    [SerializeField] [Range(0, 100)] private float dropChance = 15f;
     [SerializeField] private GameObject itemToDrop;
-    [SerializeField] private LifeController _lifeController;
+    
 
-    protected int currentHealth;
+    
     protected Transform playerTarget;
     protected Rigidbody2D rb;
 
-    public int MaxHealth { get { return _maxLife; } }
     public float Speed { get { return _speed; } }
     public int Damage { get { return _damage; } }
 
     protected virtual void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
-        _lifeController = GetComponent<LifeController>();
+        
     }
 
     protected virtual void Start()
     {
-        currentHealth = _maxLife;
+        
         playerTarget = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
@@ -55,11 +54,24 @@ public abstract class Enemy : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            
-                _lifeController.TakeDamage(_damage);
-                Destroy(gameObject);
+
+            LifeController playerLife = collision.gameObject.GetComponent<LifeController>();
+            if (playerLife != null)
+            {
+                playerLife.TakeDamage(_damage);
+            }
+            Debug.Log(gameObject.name + " si autodistrugge");
+            Destroy(gameObject);
             
         }
+    }
+
+    public void Die()
+    {
+        Debug.Log(gameObject.name + " muore");
+        GameManager.Instance.AddKill();
+        HandleDrop();
+        Destroy(gameObject); // distruggiamo il nemico
     }
 
 }

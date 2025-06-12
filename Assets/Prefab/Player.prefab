@@ -95,7 +95,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2774255209888869989}
   - component: {fileID: 653795483575362345}
-  - component: {fileID: 5735187792677201994}
   m_Layer: 0
   m_Name: Square
   m_TagString: Untagged
@@ -170,19 +169,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &5735187792677201994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7730984587029274507}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 59cac405cc43940a584679b615099aea, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BaseBullet: {fileID: 667724973280409333, guid: 1e045906ddefb48b5b812979f228bfe6, type: 3}
-  TargetPosition: {fileID: 8357636882084616364, guid: cfe66075b4b78441bb57c22b2bff9f2b, type: 3}
-  FireRate: 0
-  Proiettili: 0

@@ -9,43 +9,62 @@ public class LifeController : MonoBehaviour
     [SerializeField] private float _maxHealth = 10;
     [SerializeField] private bool _isPlayer;
 
-    public enum ON_DEFEAT_BEHAVIOUR {DISABLE = 0, DESTROY = 1, NONE = 2}
-    [SerializeField] private ON_DEFEAT_BEHAVIOUR _onDefeatBehaviour = ON_DEFEAT_BEHAVIOUR.DISABLE;
+    //public enum ON_DEFEAT_BEHAVIOUR {DISABLE = 0, DESTROY = 1, NONE = 2}
+    //[SerializeField] private ON_DEFEAT_BEHAVIOUR _onDefeatBehaviour = ON_DEFEAT_BEHAVIOUR.DISABLE;  <-- spostiamolo nei nemici/player
+    private Enemy enemyComponent;
 
+    public float CurrentHealth { get; private set; }
 
-    public float CurrentHealth => _currentHealth;
-    
     private void Awake()
     {
-        _currentHealth = _maxHealth;
-    }
-
-    public void Die()
-    {
-        if (_currentHealth == 0)
+        CurrentHealth = _maxHealth;
+        if (!_isPlayer)
         {
-            switch (_onDefeatBehaviour)
+            enemyComponent = GetComponent<Enemy>();
+            if (enemyComponent == null)
             {
-                default:
-                    break;
-
-                case ON_DEFEAT_BEHAVIOUR.DISABLE:
-                    gameObject.SetActive(false);
-                    break;
-                case ON_DEFEAT_BEHAVIOUR.DESTROY:
-                    //SUONO PER LA MORTE
-                    Destroy(gameObject);
-                    break;
-                case ON_DEFEAT_BEHAVIOUR.NONE:
-                    break;
+                Debug.LogError("LifeController (non player) non ha trovato un componente Enemy!", gameObject);
             }
         }
     }
+
+    //Ora gestito su Enemy
+    //public void Die()
+    //{
+    //    if (_currentHealth == 0)
+    //    {
+    //        switch (_onDefeatBehaviour)
+    //        {
+    //            default:
+    //                break;
+
+    //            case ON_DEFEAT_BEHAVIOUR.DISABLE:
+    //                gameObject.SetActive(false);
+    //                break;
+    //            case ON_DEFEAT_BEHAVIOUR.DESTROY:
+    //                //SUONO PER LA MORTE
+    //                Destroy(gameObject);
+    //                break;
+    //            case ON_DEFEAT_BEHAVIOUR.NONE:
+    //                break;
+    //        }
+    //    }
+    //}
       
     public void TakeDamage(float damage)
     {
-        _currentHealth -= damage;
-        Debug.Log($"{gameObject.name} ha subito {damage} danni. E ora ha {_currentHealth} di vita."); 
+        if (CurrentHealth <= 0) return;
+        CurrentHealth -= damage;
+        Debug.Log($"{gameObject.name} ha subito {damage} danni. Vita rimanente: {CurrentHealth}");
+
+        if (CurrentHealth <= 0)
+        {
+            CurrentHealth = 0;
+            if (!_isPlayer && enemyComponent != null)
+            {
+                enemyComponent.Die();
+            }
+        }
         // INSERIRE CLIP AUDIO PER QUANDO VIENE COLPITO
     }
 
