@@ -5,16 +5,28 @@ using UnityEngine;
 public class BulletMolotov : Bullet
 {
 
-    private float ExplosionTimer = 2f;
+    private float ExplosionTimer = 6f;
 
     private float timer = 0f;
 
-    Collider2D Molotov;
+    CircleCollider2D Molotov;
+
 
     // Start is called before the first frame update
     void Start()
     {
 
+        {
+            Molotov = GetComponent<CircleCollider2D>();
+            if (Molotov != null)
+            {
+                Molotov.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning("Molotov collider non trovato!");
+            }
+        }
     }
 
     // Update is called once per frame
@@ -22,8 +34,7 @@ public class BulletMolotov : Bullet
     {
 
     }
-    void FixedUpdate()
-    {
 
-    }
+
+
 }

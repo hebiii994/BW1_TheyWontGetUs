@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
 
     public void SetTarget(Vector2 direction, string targetTag)
     {
-        
+
         _targetTag = targetTag;
     }
 
@@ -49,6 +49,6 @@ public class Bullet : MonoBehaviour
                 Destroy(gameObject);
             }
         }
-            
+
     }
 }
